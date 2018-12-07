@@ -200,9 +200,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         rootContainer: function rootContainer() {
           return this.transitionMode ? this.$el.children[0] : this.$el;
         },
-        isCloning: function isCloning() {
-          return !!this.options && !!this.options.group && this.options.group.pull === 'clone';
-        },
         realList: function realList() {
           return !!this.list ? this.list : this.value;
         }
@@ -352,7 +349,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         onDragRemove: function onDragRemove(evt) {
           this.updateEvenemt(evt);
           insertNodeAt(this.rootContainer, evt.item, evt.oldIndex);
-          if (this.isCloning) {
+          if (this._sortable.lastPullMode === 'clone') {
             removeNode(evt.clone);
             return;
           }

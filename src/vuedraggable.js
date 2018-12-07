@@ -165,10 +165,6 @@
           return this.transitionMode ? this.$el.children[0] : this.$el;
         },
 
-        isCloning() {
-          return (!!this.options) && (!!this.options.group) && (this.options.group.pull === 'clone')
-        },
-
         realList() {
           return (!!this.list) ? this.list : this.value;
         }
@@ -317,7 +313,7 @@
         onDragRemove(evt) {
           this.updateEvenemt(evt)
           insertNodeAt(this.rootContainer, evt.item, evt.oldIndex)
-          if (this.isCloning) {
+          if (this._sortable.lastPullMode === 'clone') {
             removeNode(evt.clone)
             return
           }
